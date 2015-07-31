@@ -9,8 +9,6 @@ I hope it will be useful for you.  Please let me know of any problems or suggest
 
 John  
 
-taylorcjohn@gmail.com
-
 **Description**
 
 Years ago I wrote a simple utility to analyse a file into its byte components.  I find it very useful and always bring it to each new system I work on, together with some elementary test files; for example a file `256` containing 256 bytes, one of each bit pattern.  Where necessary I have rewritten the utility in C, Java, Perl and awk.
