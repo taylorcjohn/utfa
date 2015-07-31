@@ -328,3 +328,28 @@ unicode analysis for bom	(running Python 3)
 total bytes      : 3
 total characters : 1
 ```
+
+**Invoking utfa**
+
+For convenience I have made the first line of the file:
+
+`#!/usr/bin/env python3`
+
+on the assumption that the file will have execute (e.g. 755) permissions.  But of course the file can be invoked using a python interpreter:
+
+`python utfa.py...`
+
+`python3 utfa.py...`
+
+or via a copy or symbolic link with a different name if `utfa.py` is just too many character to type (it's too many for me...)
+
+**Module imports**
+
+These two import statements (used to help with python2/python3 compatibility)
+
+`import requests`  
+`import six`
+
+could cause problems.  It may be necessary to add one or both to the python installation with pip or pip3 e.g.
+
+`pip install requests`
