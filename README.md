@@ -11,8 +11,8 @@ utfa.py supports both Python 2.7 and Python 3.x versions.
 
 Examples:
 
-  * utf8.py -u https://en.wikipedia.org/wiki/UTF-8
-  * utf8.py u256
+  * utfa.py -u https://en.wikipedia.org/wiki/UTF-8
+  * utfa.py u256
   * utfa.py -b 256
 ```
 usage: utfa.py [-h] [-u URL] [-b] [-e] [-t] [-l] [-n] [-m] [-x] [-o OFFSET]
