@@ -38,5 +38,3 @@ optional arguments:
   -s SIZE, --size SIZE
   -v, --version         python version, encoding and max code point
 ```
-
-The name stands for UTF analysis (and also sounds a bit like UTF-8).
