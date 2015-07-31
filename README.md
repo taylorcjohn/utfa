@@ -16,7 +16,7 @@ Examples:
   * utfa.py -b 256
   * utfa.py -h
 ```
-usage: ut [-h] [-u URL] [-b] [-e] [-t] [-l] [-n] [-m] [-x] [-o OFFSET]
+usage: utfa.py [-h] [-u URL] [-b] [-e] [-t] [-l] [-n] [-m] [-x] [-o OFFSET]
           [-s SIZE] [-v]
           [file]
 
