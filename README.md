@@ -14,7 +14,6 @@ Examples:
   * utf8.py -u https://en.wikipedia.org/wiki/UTF-8
   * utf8.py u256
   * utfa.py -b 256
-  * utfa.py -h
 ```
 usage: utfa.py [-h] [-u URL] [-b] [-e] [-t] [-l] [-n] [-m] [-x] [-o OFFSET]
           [-s SIZE] [-v]
