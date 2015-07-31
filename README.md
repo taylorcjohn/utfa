@@ -5,6 +5,8 @@ utfa
 
 utfa.py is a Python script which analyses files or web pages into counts of all UTF-8 characters.  It can also (using -b byte mode) analyse the data into component bytes if a file or web page is not encoded using UTF-8.
 
+**Description**
+
 Years ago I wrote a simple utility to analyse a file into its byte components.  I find it very useful and always bring it to each new system I work on, together with some elementary test files; for example a file `256` containing 256 bytes, one of each bit pattern.  Where necessary I have rewritten the utility in C, Java, Perl and awk.
 
 As a first examination of a file, it easy to tell whether a text file is DOS- or Unix-formatted by looking at the counts of new line (0x0a) and carriage return (0x0d) characters.  Often, problems are resolved by checking whether a file contains tabs, nulls, delete and other unprintables.  In text files, characters above 0x7f may represent accented characters or other special values.
@@ -15,8 +17,7 @@ I have rewritten the program again, now in python (utfa.py), this time including
 
 See the document `ufta.pdf` for background and usage examples using supplied test files `256` and `u256` and various web pages.
 
-Examples
---------
+**Examples**
 
   * utfa.py u256
 ```
