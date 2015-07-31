@@ -9,7 +9,7 @@ See the document `ufta.pdf` for background and usage examples using supplied tes
 
 utfa.py supports both Python 2.7 and Python 3.x versions.  
 
-Examples:
+Examples
 
   * utfa.py u256
 ```
@@ -38,6 +38,9 @@ total bytes      : 384
 total characters : 256
 ```
   * utfa.py -u http://www.bbc.co.uk/news -xm
+
+Note that flag -x disables individual character counts, shown here for brevity:
+
 ```
 unicode analysis for http://www.bbc.co.uk/news	(running Python 3)
 
