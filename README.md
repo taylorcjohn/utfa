@@ -331,7 +331,7 @@ total characters : 1
 
 **Invoking utfa**
 
-For convenience I have made the first line of the file:
+For convenience I have made the first line of utfa.py:
 
 `#!/usr/bin/env python3`
 
