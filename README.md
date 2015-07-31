@@ -8,6 +8,6 @@ utfa.py is a Python script which analyses files or web pages into counts of all 
 
 See the document `ufta.pdf` for background and usage examples using supplied test files `256` and `u256` and various web pages.
 
-utfa.py supports both Python 2.7 and later Python 3.x versions.
+utfa.py supports both Python 2.7 and Python 3.x versions.
 
 The name stands for UTF analysis (and also sounds a bit like UTF-8).
