@@ -1,7 +1,7 @@
 utfa
 ====
 
-### UTF-8 analysis for files and web pages
+**UTF-8 analysis for files and web pages**
 
 utfa.py is a Python script which analyses files or web pages into counts of all UTF-8 characters.  It can also (using -b byte mode) analyse the data into component bytes, e.g. where a file or web page is not encoded using UTF-8.
 
