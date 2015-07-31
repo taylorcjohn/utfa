@@ -15,9 +15,8 @@ I have rewritten the program again, now in python (utfa.py), this time including
 
 See the document `ufta.pdf` for background and usage examples using supplied test files `256` and `u256` and various web pages.
 
-utfa.py supports both Python 2.7 and Python 3.x versions.  
-
 Examples
+--------
 
   * utfa.py u256
 ```
