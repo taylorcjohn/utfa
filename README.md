@@ -137,7 +137,7 @@ total characters : 256815
 
   * utfa.py bom -m  
 
-Note that the byte order mark (bom) comprises three bytes to form one UTF-8 character which is (curiously) part of the unicoede block `Arabic Presentation Forms-B`
+Note that the byte order mark (bom) comprises three bytes to form one UTF-8 character which is (curiously) part of the unicode block `Arabic Presentation Forms-B`
 ```
 unicode analysis for bom	(running Python 3)
 
