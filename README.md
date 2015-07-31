@@ -274,7 +274,7 @@ total characters : 334528
 ```
   * utfa.py bom -m  
 
-Note that the byte order mark (bom) comprises three bytes to form one UTF-8 character which is (curiously) part of the unicode block `Arabic Presentation Forms-B`
+Note that the byte order mark (bom) comprises three bytes to form one UTF-8 character which is (curiously) the last character of the unicode block `Arabic Presentation Forms-B` and also serves as `Zero Width Non-Breaking Space (ZWNBSP)`.
 ```
 unicode analysis for bom	(running Python 3)
 
