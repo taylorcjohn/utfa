@@ -135,6 +135,28 @@ total bytes      : 257320
 total characters : 256815
 ```
 
+  * utfa.py bom -m
+Note that the byte order mark (bom) comprises three bytes to form one UTF-8 character which is (curiously) part of the unicoede block `Arabic Presentation Forms-B`
+
+```
+unicode analysis for bom	(running Python 3)
+
+         0 1 2 3 4 5 6 7 8 9 a b c d e f	-- unicode block --        	-- characters --
+
+      0  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+      1  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+      2  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+      3  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+      4  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+      5  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+      6  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+      7  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0	Basic Latin                	                
+ 0xfef0  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1	Arabic Presentation Forms-B	               ﻿
+
+total bytes      : 3
+total characters : 1
+```
+
 Usage:
 
 ```
