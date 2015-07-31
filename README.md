@@ -101,7 +101,6 @@ total characters : 197123
 
   * utfa.py -u https://en.wikipedia.org/wiki/UTF-8 -xm
 ```
-
 unicode analysis for https://en.wikipedia.org/wiki/UTF-8	(running Python 3)
 
         total	-- unicode block --      	-- characters --
