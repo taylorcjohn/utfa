@@ -130,8 +130,11 @@ unicode analysis for https://en.wikipedia.org/wiki/UTF-8	(running Python 3)
 
 total bytes      : 257320
 total characters : 256815
+```
 
+Usage:
 
+```
 usage: utfa.py [-h] [-u URL] [-b] [-e] [-t] [-l] [-n] [-m] [-x] [-o OFFSET]
           [-s SIZE] [-v]
           [file]
