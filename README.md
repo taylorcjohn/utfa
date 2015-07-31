@@ -13,6 +13,31 @@ Examples:
 
   * utfa.py -u https://en.wikipedia.org/wiki/UTF-8
   * utfa.py u256
+```
+unicode analysis for u256	(running Python 3)
+
+         0 1 2 3 4 5 6 7 8 9 a b c d e f	-- unicode block -- 	-- characters --
+
+      0  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	................
+      1  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	................
+      2  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	 !"#$%&'()*+,-./
+      3  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	0123456789:;<=>?
+      4  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	@ABCDEFGHIJKLMNO
+      5  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	PQRSTUVWXYZ[\]^_
+      6  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	`abcdefghijklmno
+      7  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Basic Latin         	pqrstuvwxyz{|}~ 
+   0x80  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	................
+   0x90  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	................
+   0xa0  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	 ¡¢£¤¥¦§¨©ª«¬­®¯
+   0xb0  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	°±²³´µ¶·¸¹º»¼½¾¿
+   0xc0  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ
+   0xd0  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	ÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß
+   0xe0  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	àáâãäåæçèéêëìíîï
+   0xf0  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1	Latin-1 Supplement  	ðñòóôõö÷øùúûüýþÿ
+
+total bytes      : 384
+total characters : 256
+```
   * utfa.py -b 256
 ```
 usage: utfa.py [-h] [-u URL] [-b] [-e] [-t] [-l] [-n] [-m] [-x] [-o OFFSET]
