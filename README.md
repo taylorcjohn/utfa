@@ -51,6 +51,7 @@ optional arguments:
 **Examples**
 
   * utfa.py u256
+
 ```
 unicode analysis for u256	(running Python 3)
 
@@ -76,6 +77,36 @@ unicode analysis for u256	(running Python 3)
 total bytes      : 384
 total characters : 256
 ```
+
+  * utfa.py u256 -b
+
+The same file viewed as byte counts
+```
+byte analysis for u256
+
+         0  1  2  3  4  5  6  7  8  9  a  b  c  d  e  f		-- characters --
+
+     0   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		................
+     1   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		................
+     2   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		 !"#$%&'()*+,-./
+     3   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		0123456789:;<=>?
+     4   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		@ABCDEFGHIJKLMNO
+     5   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		PQRSTUVWXYZ[\]^_
+     6   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		`abcdefghijklmno
+     7   1  1  1  1  1  1  1  1  1  1  1  1  1  1  1  1		pqrstuvwxyz{|}~
+     8   2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2		................
+     9   2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2		................
+     a   2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2		 ¡¢£¤¥¦§¨©ª«¬­®¯
+     b   2  2  2  2  2  2  2  2  2  2  2  2  2  2  2  2		°±²³´µ¶·¸¹º»¼½¾¿
+     c   0  0 64 64  0  0  0  0  0  0  0  0  0  0  0  0		ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏ
+     d   0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0		ÐÑÒÓÔÕÖ×ØÙÚÛÜÝÞß
+     e   0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0		àáâãäåæçèéêëìíîï
+     f   0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0		ðñòóôõö÷øùúûüýþÿ
+
+total bytes : 384
+
+```
+
   * utfa.py -u http://www.bbc.co.uk/news -xm
 
 Note that flag -x disables individual character counts, shown here for brevity:
