@@ -104,7 +104,6 @@ byte analysis for u256
      f   0  0  0  0  0  0  0  0  0  0  0  0  0  0  0  0		ðñòóôõö÷øùúûüýþÿ
 
 total bytes : 384
-
 ```
 
   * utfa.py -u http://www.bbc.co.uk/news -xm
