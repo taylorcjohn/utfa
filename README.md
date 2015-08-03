@@ -374,7 +374,7 @@ on the assumption that the file will have execute (e.g. 755) permissions.  But o
 
 `python3 utfa.py...`
 
-or via a copy or symbolic link with a different name if `utfa.py` is just too many character to type (it's too many for me...)
+or via a copy or symbolic link with a different name if `utfa.py` is just too many characters to type (it's too many for me...)
 
 **Module imports**
 
