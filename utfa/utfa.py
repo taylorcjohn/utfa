@@ -6,7 +6,7 @@
 #
 # John Taylor (onefouronefour limited)
 #
-# 2015-07-30 12:30
+# 2015-08-03 13:30
 # ...........................................................................
 
 from   __future__ import print_function
@@ -262,7 +262,7 @@ def show_utf8 ( file_dict, rows_dict ):
     if args.name:
         print ( ("\t{0:<" + block_format + "}").format("-- unicode block --"), end='')
     if args.legend:
-        print ( "\t-- characters --\n" )
+        print ( " \t-- characters --\n" )
     else:
         print ( '\n' )
 
@@ -320,7 +320,7 @@ def show_utf8 ( file_dict, rows_dict ):
             print ( ("\t{0:<" + block_format + "}").format(code_name), end='')
         if args.legend:
             value = set_value( legend )
-            print ( "\t{0}\n".format(value), end='' )
+            print ( " \t{0}\n".format(value), end='' )
         else:
             print ( '\n', end='' )
    
@@ -370,7 +370,7 @@ def show_utf8 ( file_dict, rows_dict ):
             print ( ("\t{0:<" + block_format + "}").format(code_name), end='')
         if args.legend:
             value = set_value( legend )
-            print ( "\t{0}\n".format(value), end='' )
+            print ( " \t{0}\n".format(value), end='' )
         else:
             print ( '\n', end='' )
             
