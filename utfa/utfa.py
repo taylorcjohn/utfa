@@ -6,7 +6,7 @@
 #
 # John Taylor (onefouronefour limited)
 #
-# 2015-08-03 13:30
+# 2015-11-02 16:00
 # ...........................................................................
 
 from   __future__ import print_function
@@ -74,7 +74,7 @@ def read_bytes( file_name ):
     except:
         traceback.print_exc()
         print ( "cannot open file {0}\n".format(file_name) )
-        exit ( 1 )
+        sys.exit( 1 )
 
 # ...........................................................................
 # populate file_dict from byte values
@@ -112,10 +112,10 @@ def gen_utf8 ( file_bytes ):
  
     except UnicodeDecodeError:
         print ( "file {0} is not valid utf-8, try analysing file as bytes using flag -b or enable error replacement with flag -e\n".format(source))
-        exit ( 2 )
+        sys.exit( 2 )
     except:
         traceback.print_exc()
-        exit ( 1 )
+        sys.exit( 1 )
 
     for c in file_utf8:
         if not c in file_dict:
@@ -734,7 +734,7 @@ def main():
     else:        
         if args.file == None:
             print ("no filename given")
-            exit ( 1 )
+            sys.exit( 1 )
 
         source = args.file
         source_bytes = read_bytes(args.file)
