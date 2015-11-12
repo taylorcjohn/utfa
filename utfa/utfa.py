@@ -6,8 +6,7 @@
 #
 # John Taylor (onefouronefour limited)
 #
-# 2015-11-12 18:00
-# 2015-11-02 16:00
+# 2015-11-12 22:00
 # ...........................................................................
 
 from   __future__ import print_function
@@ -79,7 +78,11 @@ def read_bytes( file_name ):
         sys.exit ( 1 )
 
 # ...........................................................................
-# read file as bytes
+# count words
+#
+# note that there is a python 2.7/3.3+ difference see: https://www.python.org/dev/peps/pep-0414/
+# test versions and utf-8/binary variants: word_test.sh utfa.py
+# arithmetic matches wc
 # ...........................................................................
 def count_words( source_bytes ):
     
