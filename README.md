@@ -24,7 +24,7 @@ See the document `ufta.pdf` for background and usage examples using supplied tes
 **Usage**
 
 ```
-usage: utfa.py [-h] [-u URL] [-b] [-e] [-t] [-l] [-n] [-m] [-x] [-o OFFSET]
+usage: ut [-h] [-u URL] [-b] [-e] [-t] [-w] [-l] [-n] [-m] [-x] [-o OFFSET]
           [-s SIZE] [-v]
           [file]
 
@@ -39,6 +39,7 @@ optional arguments:
   -b, --bytes           analyse 256 possible bit patterns
   -e, --errors          enable unicode error replacement
   -t, --time            show run time
+  -w, --words           show word count
   -l, --legend          disable legend display
   -n, --name            disable unicode block names
   -m, --mask            show only characters present in file/url
