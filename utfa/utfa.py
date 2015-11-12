@@ -7,6 +7,7 @@
 # John Taylor (onefouronefour limited)
 #
 # 2015-11-12 18:00
+# 2015-11-02 16:00
 # ...........................................................................
 
 from   __future__ import print_function
@@ -764,6 +765,7 @@ def main():
     else:        
         if args.file == None:
             print ("no filename given")
+
             sys.exit ( 1 )
 
         source = args.file
