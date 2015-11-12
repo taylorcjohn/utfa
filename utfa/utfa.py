@@ -6,12 +6,13 @@
 #
 # John Taylor (onefouronefour limited)
 #
-# 2015-08-03 13:30
+# 2015-11-12 16:30
 # ...........................................................................
 
 from   __future__ import print_function
 
 import sys
+import re
 import argparse
 from   math import log10
 import traceback
@@ -67,9 +68,23 @@ def read_bytes( file_name ):
             if not chunk:
                 break
 
-        fp.close()
+        fp.close()        
 
-        return file_bytes
+        # unicode difference
+        if six.PY2:
+            if args.bytes:
+                words = re.split(r"[\s\t]+", file_bytes)
+            else:
+                words = re.split(r"[\s\t]+", file_bytes, flags=re.UNICODE)
+        else:
+            if args.bytes:
+                words = re.split(br"[\s\t]+", file_bytes)
+            else:
+                words = re.split(br"[\s\t]+", file_bytes, flags=0)
+    
+        word_count = len(words) - 1
+
+        return file_bytes, word_count
 
     except:
         traceback.print_exc()
@@ -132,7 +147,7 @@ def gen_utf8 ( file_bytes ):
 # ...........................................................................
 # display 256 byte positions
 # ...........................................................................
-def show_file ( file_dict ):
+def show_file ( file_dict, word_count ):
 
     global args, source, source_size
     
@@ -207,14 +222,17 @@ def show_file ( file_dict ):
             else:
                 print ( '\n', end='' )               
                     
-    print( "\ntotal bytes : {0:d}\n".format( source_size ))
+    print( "\ntotal bytes : {0:d}".format( source_size ))
+    if args.word:
+        print( "total words : {0:d}".format( word_count ))
+    print ( '\n', end='' )  
     
     return
 
 # ...........................................................................
 # display unicode values
 # ...........................................................................
-def show_utf8 ( file_dict, rows_dict ):
+def show_utf8 ( file_dict, word_count, rows_dict ):
 
     global args, source, source_size, block_index
     
@@ -375,8 +393,10 @@ def show_utf8 ( file_dict, rows_dict ):
             print ( '\n', end='' )
             
     print( "\ntotal bytes      : {0:d}".format( source_size ))
+    if args.word:
+        print( "total words      : {0:d}".format( word_count ))
     print( "total characters : {0:d}\n".format( char_count ))
-    
+
     return
 
 # ...........................................................................
@@ -702,6 +722,7 @@ def main():
     parser.add_argument("-b", "--bytes",   action="store_true",  default=False, help="analyse 256 possible bit patterns")
     parser.add_argument("-e", "--errors",  action="store_true",  default=False, help="enable unicode error replacement")
     parser.add_argument("-t", "--time",    action="store_true",                 help="show run time")
+    parser.add_argument("-w", "--word",    action="store_true",                 help="show word count")
     parser.add_argument("-l", "--legend",  action="store_false", default=True,  help="disable legend display")
     parser.add_argument("-n", "--name",    action="store_false", default=True,  help="disable unicode block names")
     parser.add_argument("-m", "--mask",    action="store_true",  default=False, help="show only characters present in file/url")
@@ -737,16 +758,16 @@ def main():
             exit ( 1 )
 
         source = args.file
-        source_bytes = read_bytes(args.file)
+        source_bytes, word_count = read_bytes(args.file)
         
     # ...........................................................................    
 
     if args.bytes:
         file_dict = gen_dict(source_bytes)
-        show_file(file_dict)
+        show_file(file_dict, word_count)
     else:
         (file_dict, rows_dict) = gen_utf8(source_bytes)
-        show_utf8(file_dict, rows_dict)
+        show_utf8(file_dict, word_count, rows_dict)
         
     time_end = time.time()
 
