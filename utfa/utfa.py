@@ -6,7 +6,7 @@
 #
 # John Taylor (onefouronefour limited)
 #
-# 2015-11-12 16:30
+# 2015-11-12 18:00
 # ...........................................................................
 
 from   __future__ import print_function
@@ -35,7 +35,7 @@ def tryimport( m ):
         # create a global object containing module
         globals()[m] = module_obj
     except ImportError:
-        sys.exit("""\nYou need module '%s'\n
+        sys.exit ("""\nYou need module '%s'\n
 install it from http://pypi.python.org/pypi/%s\n 
 or run 'pip install %s' (use pip3 for python 3.*)\n""" % (m,m,m))
 # ...........................................................................
@@ -70,26 +70,35 @@ def read_bytes( file_name ):
 
         fp.close()        
 
-        # unicode difference
-        if six.PY2:
-            if args.bytes:
-                words = re.split(r"[\s\t]+", file_bytes)
-            else:
-                words = re.split(r"[\s\t]+", file_bytes, flags=re.UNICODE)
-        else:
-            if args.bytes:
-                words = re.split(br"[\s\t]+", file_bytes)
-            else:
-                words = re.split(br"[\s\t]+", file_bytes, flags=0)
-    
-        word_count = len(words) - 1
-
-        return file_bytes, word_count
+        return file_bytes
 
     except:
         traceback.print_exc()
         print ( "cannot open file {0}\n".format(file_name) )
-        exit ( 1 )
+        sys.exit ( 1 )
+
+# ...........................................................................
+# read file as bytes
+# ...........................................................................
+def count_words( source_bytes ):
+    
+    global args
+    
+    # unicode difference
+    if six.PY2:
+        if args.bytes:
+            s_words = re.split(r"[\s\t]+", source_bytes)
+        else:
+            s_words = re.split(r"[\s\t]+", source_bytes, flags=re.UNICODE)
+    else:
+        if args.bytes:
+            s_words = re.split(br"[\s\t]+", source_bytes)
+        else:
+            s_words = re.split(br"[\s\t]+", source_bytes, flags=0)
+    
+    word_count = len(s_words) - 1
+
+    return word_count
 
 # ...........................................................................
 # populate file_dict from byte values
@@ -127,10 +136,10 @@ def gen_utf8 ( file_bytes ):
  
     except UnicodeDecodeError:
         print ( "file {0} is not valid utf-8, try analysing file as bytes using flag -b or enable error replacement with flag -e\n".format(source))
-        exit ( 2 )
+        sys.exit ( 2 )
     except:
         traceback.print_exc()
-        exit ( 1 )
+        sys.exit ( 1 )
 
     for c in file_utf8:
         if not c in file_dict:
@@ -223,7 +232,7 @@ def show_file ( file_dict, word_count ):
                 print ( '\n', end='' )               
                     
     print( "\ntotal bytes : {0:d}".format( source_size ))
-    if args.word:
+    if args.words:
         print( "total words : {0:d}".format( word_count ))
     print ( '\n', end='' )  
     
@@ -393,7 +402,7 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
             print ( '\n', end='' )
             
     print( "\ntotal bytes      : {0:d}".format( source_size ))
-    if args.word:
+    if args.words:
         print( "total words      : {0:d}".format( word_count ))
     print( "total characters : {0:d}\n".format( char_count ))
 
@@ -722,7 +731,7 @@ def main():
     parser.add_argument("-b", "--bytes",   action="store_true",  default=False, help="analyse 256 possible bit patterns")
     parser.add_argument("-e", "--errors",  action="store_true",  default=False, help="enable unicode error replacement")
     parser.add_argument("-t", "--time",    action="store_true",                 help="show run time")
-    parser.add_argument("-w", "--word",    action="store_true",                 help="show word count")
+    parser.add_argument("-w", "--words",   action="store_true",                 help="show word count")
     parser.add_argument("-l", "--legend",  action="store_false", default=True,  help="disable legend display")
     parser.add_argument("-n", "--name",    action="store_false", default=True,  help="disable unicode block names")
     parser.add_argument("-m", "--mask",    action="store_true",  default=False, help="show only characters present in file/url")
@@ -755,11 +764,17 @@ def main():
     else:        
         if args.file == None:
             print ("no filename given")
-            exit ( 1 )
+            sys.exit ( 1 )
 
         source = args.file
-        source_bytes, word_count = read_bytes(args.file)
+        source_bytes = read_bytes(args.file)
         
+    # ...........................................................................    
+
+    word_count = -1
+    if args.words:
+        word_count = count_words( source_bytes )
+
     # ...........................................................................    
 
     if args.bytes:
