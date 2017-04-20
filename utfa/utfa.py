@@ -6,7 +6,8 @@
 #
 # John Taylor (onefouronefour limited)
 #
-# 2015-11-12 22:00
+# 2015-11-12 22:00 first version
+# 2017-04-20 18:00 -c and -C web arguments
 # ...........................................................................
 
 from   __future__ import print_function
@@ -49,26 +50,26 @@ tryimport ('six')
 def read_bytes( file_name ):
 
     global args, source_size
-    
+
     try:
         if file_name == "-":
             fp = sys.stdin
         else:
             fp = open ( file_name, 'rb')
             fp.seek (args.offset)
-        
+
         source_size = 0
         file_bytes = b''
         while True:
             # using a fixed chunk size could allow incremental scan to avoid reading entire file
-            # into memory. but it would be necessary to detect split unicode characters (future exercise) 
+            # into memory. but it would be necessary to detect split unicode characters (future exercise)
             chunk = fp.read (args.size )
             source_size += len( chunk )
             file_bytes = b''.join([file_bytes,chunk])
             if not chunk:
                 break
 
-        fp.close()        
+        fp.close()
 
         return file_bytes
 
@@ -85,9 +86,9 @@ def read_bytes( file_name ):
 # arithmetic matches wc
 # ...........................................................................
 def count_words( source_bytes ):
-    
+
     global args
-    
+
     # unicode difference
     if six.PY2:
         if args.bytes:
@@ -99,7 +100,7 @@ def count_words( source_bytes ):
             s_words = re.split(br"[\s\t]+", source_bytes)
         else:
             s_words = re.split(br"[\s\t]+", source_bytes, flags=0)
-    
+
     word_count = len(s_words) - 1
 
     return word_count
@@ -121,23 +122,24 @@ def gen_dict ( file_bytes ):
 # ...........................................................................
 # populate file_dict from unicode and rows_dict for ranges of unicode
 # ...........................................................................
+# noinspection PyCompatibility
 def gen_utf8 ( file_bytes ):
 
     global args
 
     file_dict = {}
     rows_dict = {}
-    
+
     # convert to utf-8
-    
+
     errors = 'strict'
     if args.errors:
-        errors = 'replace' 
-       
+        errors = 'replace'
+
     try:
         file_utf8 = file_bytes.decode('utf-8', errors)
         pass
- 
+
     except UnicodeDecodeError:
         print ( "file {0} is not valid utf-8, try analysing file as bytes using flag -b or enable error replacement with flag -e\n".format(source))
         sys.exit ( 2 )
@@ -163,14 +165,14 @@ def gen_utf8 ( file_bytes ):
 def show_file ( file_dict, word_count ):
 
     global args, source, source_size
-    
+
     maxval = max( file_dict.values())
 
     lmax = int( log10(maxval) ) + 2
-    
+
     head_format = "{" + ("0:>%d" % lmax) + "s}"
     body_format = "{" + ("0:%d" % lmax) + "d}"
-    
+
     # print output
     print ( "\nbyte analysis for {0}\n".format(source) )
 
@@ -189,21 +191,21 @@ def show_file ( file_dict, word_count ):
     for i in range (0,16):
         row_total=0
         print ( "     {0:1s} ".format(dx(i)), end='' )
-        legend=''        
+        legend=''
         for j in range (0,16):
-            
+
             k = 16*i + j
             cp = k
 
             if six.PY2:
                 s = chr(k)
             else:
-                s = k                
+                s = k
 
             if s in file_dict:
                 if (i < 2) or (i > 7 and i < 10):
                     legend += '.'
-                else:    
+                else:
                     legend += six.unichr(cp)
                 num = file_dict[ s ]
                 row_total += num
@@ -222,24 +224,24 @@ def show_file ( file_dict, word_count ):
 
         if not args.number:
             print( body_format.format( row_total ), end='' )
- 
+
         if i < 8:
             if args.legend:
                 print ( "\t\t{0}\n".format(legend), end='' )
             else:
-                print ( '\n', end='' )               
+                print ( '\n', end='' )
         else:
             if args.legend:
                 value = set_value( legend )
                 print ( "\t\t{0}\n".format(value), end='' )
             else:
-                print ( '\n', end='' )               
-                    
+                print ( '\n', end='' )
+
     print( "\ntotal bytes : {0:d}".format( source_size ))
     if args.words:
         print( "total words : {0:d}".format( word_count ))
-    print ( '\n', end='' )  
-    
+    print ( '\n', end='' )
+
     return
 
 # ...........................................................................
@@ -248,14 +250,16 @@ def show_file ( file_dict, word_count ):
 def show_utf8 ( file_dict, word_count, rows_dict ):
 
     global args, source, source_size, block_index
-    
+
     char_count = 0
-    
+
     dict_list = list( rows_dict )
     dict_list.sort()
-        
+
     maxval = max( file_dict.values())
-    
+
+    block_format = ""
+
     if args.name:
         maxnamelen = max( 20, len(block_name( 0 )))
         for k in ''.join( dict_list ):
@@ -263,25 +267,25 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
             cp = ( int( cp / 16 ) ) * 16
             code_len=len(block_name( cp ))
             maxnamelen = max( code_len, maxnamelen )
-        
+
         block_format = "{w}".format( w = maxnamelen )
-    
+
         # reset index so that block_name() can scan forwards again
         block_index = 0
-    
+
     lmax = int( log10(maxval) ) + 2
-    
+
     head_format = "{" + ("0:>%d" % lmax) + "s}"
     body_format = "{" + ("0:%d" % lmax) + "d}"
-    
+
     # print output
     print ( "\nunicode analysis for {0}\t".format(source), end="" )
 
     if six.PY2:
-        print ( "(running Python 2 : showing Basic Multilingual Plane including surrogate pairs)\n" )    
+        print ( "(running Python 2 : showing Basic Multilingual Plane including surrogate pairs)\n" )
     else:
-        print ( "(running Python 3)\n" )    
-        
+        print ( "(running Python 3)\n" )
+
     print ( "        ", end=''  )
 
     if args.number:
@@ -299,16 +303,16 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
 
     # ...........................................................................
     # show characters in range 0x0 to 0x7f
-    # ...........................................................................    
+    # ...........................................................................
     for i in range (0,8):
 
         row_total=0
-        legend=''        
- 
+        legend=''
+
         print ( "{0:>7} ".format(dx(i)), end='' )
 
         code_name = block_name( 0 )
-        
+
         for j in range (0,16):
 
             s = chr(16*i + j)
@@ -316,7 +320,7 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
             if s in file_dict:
                 if i < 2:
                     legend += '.'
-                else:    
+                else:
                     # test for delete
                     if s == chr(127):
                         legend += ' '
@@ -340,13 +344,13 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
                             legend += ' '
                         else:
                             legend += s
-                        
+
                 if args.number:
                     print( body_format.format( 0 ), end='' )
-        
+
         if not args.number:
             print( body_format.format(row_total), end='' )
-           
+
         if args.name:
             print ( ("\t{0:<" + block_format + "}").format(code_name), end='')
         if args.legend:
@@ -354,7 +358,7 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
             print ( " \t{0}\n".format(value), end='' )
         else:
             print ( '\n', end='' )
-   
+
     # ...........................................................................
     # show characters above 0x7f
     # ...........................................................................
@@ -363,15 +367,15 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
         row_total = 0
         cp = ord( k )
         cp = ( int( cp / 16 ) ) * 16
-        
+
         print ( "{0:>7} ".format(str( hex (cp) )), end='' )
 
         code_name = block_name( cp )
-        
+
         for j in range (cp,cp+16):
 
             s = six.unichr(j)
-                
+
             if s in file_dict:
                 if s < six.unichr(0xa0):
                     legend += '.'
@@ -396,7 +400,7 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
 
         if not args.number:
             print( body_format.format( row_total ), end='' )
-            
+
         if args.name:
             print ( ("\t{0:<" + block_format + "}").format(code_name), end='')
         if args.legend:
@@ -404,7 +408,7 @@ def show_utf8 ( file_dict, word_count, rows_dict ):
             print ( " \t{0}\n".format(value), end='' )
         else:
             print ( '\n', end='' )
-            
+
     print( "\ntotal bytes      : {0:d}".format( source_size ))
     if args.words:
         print( "total words      : {0:d}".format( word_count ))
@@ -419,7 +423,7 @@ def set_value ( legend ):
     if six.PY2:
         value = legend.encode("utf-8")
     else:
-        value = legend    
+        value = legend
     return value
 
 # ...........................................................................
@@ -430,7 +434,7 @@ def block_name( cp ):
     global blocks, block_index
 
     code_name = ''
-    
+
     if cp == None:
         code_name = 'No_Block'
     else:
@@ -456,8 +460,8 @@ def populate_block_name():
     global blocks
 
     # @missing: 0000..10FFFF; No_Block
-    
-    blocks = [ 
+
+    blocks = [
                 (0x0000,0x007F,"Basic Latin"),
                 (0x0080,0x00FF,"Latin-1 Supplement"),
                 (0x0100,0x017F,"Latin Extended-A"),
@@ -722,16 +726,18 @@ def dx(d):
 # main()
 # ...........................................................................
 def main():
-    
+
     global args, source, source_size, file_dict, block_index
-    
+
     time_start = time.time()
-        
+
     populate_block_name()
     block_index = 0
-    
+
     parser = argparse.ArgumentParser(description='file analysis')
     parser.add_argument("-u", "--url",     action="store",                      help="url e.g. -u http://bbc.co.uk")
+    parser.add_argument("-c", "--code",    action="store_true",  default=False, help="show web encoding")
+    parser.add_argument("-C", "--xcode",   action="store_true",  default=False, help="show extra web headers")
     parser.add_argument("-b", "--bytes",   action="store_true",  default=False, help="analyse 256 possible bit patterns")
     parser.add_argument("-e", "--errors",  action="store_true",  default=False, help="enable unicode error replacement")
     parser.add_argument("-t", "--time",    action="store_true",                 help="show run time")
@@ -744,14 +750,14 @@ def main():
     parser.add_argument("-s", "--size",    action="store",       type=int, default=-1)
     parser.add_argument("-v", "--version", action="store_true",  default=False, help="python version, encoding and max code point")
     parser.add_argument( 'file', nargs='?', default=None )
-    
+
     args = parser.parse_args()
 
     if args.version:
         print ("\n{0}".format(sys.version_info))
         print ("default encoding {0}".format(sys.getdefaultencoding()))
         print ("maximum Unicode code point {0}".format(hex(sys.maxunicode)))
-            
+
     # ...........................................................................
     # analyse url or file
     # ...........................................................................
@@ -761,11 +767,22 @@ def main():
         source_bytes = response.content
 #       source_bytes = response.text
 #       enc = response.encoding
-        
+
+        if args.code or args.xcode:
+            print("\n         encoding : {0}".format(response.encoding))
+            print(  " content encoding : {0}".format(response.headers['content-encoding']))
+            print(  "apparent encoding : {0}".format(response.apparent_encoding))
+
+            if args.xcode:
+                print("")
+                for rkey in sorted(response.headers):
+#                   if not rkey.lower() == 'content-encoding':
+                    print("  response header : {0} : {1}".format(rkey,response.headers[rkey]))
+
         source = args.url
         source_size=len(source_bytes)
-        
-    else:        
+
+    else:
         if args.file == None:
             print ("no filename given")
 
@@ -773,14 +790,14 @@ def main():
 
         source = args.file
         source_bytes = read_bytes(args.file)
-        
-    # ...........................................................................    
+
+    # ...........................................................................
 
     word_count = -1
     if args.words:
         word_count = count_words( source_bytes )
 
-    # ...........................................................................    
+    # ...........................................................................
 
     if args.bytes:
         file_dict = gen_dict(source_bytes)
@@ -788,15 +805,15 @@ def main():
     else:
         (file_dict, rows_dict) = gen_utf8(source_bytes)
         show_utf8(file_dict, word_count, rows_dict)
-        
+
     time_end = time.time()
 
     if args.time:
         print ( "{0:0.2f} seconds".format(time_end - time_start))
 
-# ...........................................................................    
+# ...........................................................................
 
 if __name__ == '__main__':
     main()
-        
-# ...........................................................................    
+
+# ...........................................................................
