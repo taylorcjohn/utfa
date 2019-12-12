@@ -8,6 +8,8 @@
 #
 # 2015-11-12 22:00 first version
 # 2017-04-20 18:00 -c and -C web arguments
+# 2019-12-12 13:00 pre-test 'content-encoding' in response.headers
+# 2019-12-12 14:40 update block names to Unicode 12.1
 # ...........................................................................
 
 from   __future__ import print_function
@@ -453,7 +455,7 @@ def block_name( cp ):
     return code_name
 
 # ...........................................................................
-# populate block name
+# populate block name Unicode 12.1.0 : http://unicode.org/versions/Unicode12.1.0/
 # ...........................................................................
 def populate_block_name():
 
@@ -706,9 +708,14 @@ def populate_block_name():
                 (0x1F700,0x1F77F,"Alchemical Symbols"),
                 (0x1F780,0x1F7FF,"Geometric Shapes Extended"),
                 (0x1F800,0x1F8FF,"Supplemental Arrows-C"),
+                (0x1F900,0x1F9FF,"Supplemental Symbols and Pictographs"),
+                (0x1FA00,0x1FA6F,"Chess Symbols"),
+                (0x1FA70,0x1FAFF,"Symbols and Pictographs Extended-A"),
                 (0x20000,0x2A6DF,"CJK Unified Ideographs Extension B"),
                 (0x2A700,0x2B73F,"CJK Unified Ideographs Extension C"),
                 (0x2B740,0x2B81F,"CJK Unified Ideographs Extension D"),
+                (0x2B820,0x2CEAF,"CJK Unified Ideographs Extension E"),
+                (0x2CEB0,0x2EBEF,"CJK Unified Ideographs Extension F"),
                 (0x2F800,0x2FA1F,"CJK Compatibility Ideographs Supplement"),
                 (0xE0000,0xE007F,"Tags"),
                 (0xE0100,0xE01EF,"Variation Selectors Supplement"),
@@ -770,8 +777,9 @@ def main():
 
         if args.code or args.xcode:
             print("\n         encoding : {0}".format(response.encoding))
-            print(  " content encoding : {0}".format(response.headers['content-encoding']))
-            print(  "apparent encoding : {0}".format(response.apparent_encoding))
+            print("apparent encoding : {0}".format(response.apparent_encoding))
+            if 'content-encoding' in response.headers:
+                print(  " content encoding : {0}".format(response.headers['content-encoding']))
 
             if args.xcode:
                 print("")
