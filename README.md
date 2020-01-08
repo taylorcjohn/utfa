@@ -136,7 +136,7 @@ total bytes      : 197124
 total characters : 197123
 ```
 
-  * utfa.py -u https://en.wikipedia.org/wiki/UTF-8 -xm
+      * utfa.py -u https://en.wikipedia.org/wiki/UTF-8 -xm
 ```
 unicode analysis for https://en.wikipedia.org/wiki/UTF-8	(running Python 3)
 
@@ -369,6 +369,42 @@ total bytes      : 3
 total characters : 1
 ```
 
+**Unicode pages**
+
+The Unicode standard is modified and extended at intervals.  One recent change added some more
+Pictographs (Emoji).  The block list in Utfa was extended to accommodate these.  For an example see:
+```
+https://www.compart.com/en/unicode/block/U+1FA70
+```
+these can be tested like this (for example if you particularly need to display a stethoscope or banjo...)
+
+  * utfa.py -u https://www.compart.com/en/unicode/block/U+1FA70 -xm
+```
+unicode analysis for https://www.compart.com/en/unicode/block/U+1FA70	(running Python 3)
+
+        total	-- unicode block --                	-- characters --
+
+      0     0	Basic Latin                        	                
+      1     0	Basic Latin                        	                
+      2  3311	Basic Latin                        	 !"# %&'()*+,-./
+      3  2958	Basic Latin                        	0123456789:;<=> 
+      4   319	Basic Latin                        	@ABCDEFGHI KLMNO
+      5   189	Basic Latin                        	P RSTU WXY [\] _
+      6 10531	Basic Latin                        	 abcdefghijklmno
+      7  4701	Basic Latin                        	pqrstuvwxyz{|}  
+   0xa0     2	Latin-1 Supplement                 	         ©      
+   0xd0     1	Latin-1 Supplement                 	       ×        
+   0xe0     1	Latin-1 Supplement                 	       ç        
+ 0x2010     6	General Punctuation                	   –        “”  
+0x1fa70     7	Symbols and Pictographs Extended-A 	🩰🩱🩲🩳    🩸🩹🩺     
+0x1fa80     3	Symbols and Pictographs Extended-A 	🪀🪁🪂             
+0x1fa90     6	Symbols and Pictographs Extended-A 	🪐🪑🪒🪓🪔🪕          
+
+total bytes      : 22099
+total characters : 22035
+```
+
+
 **Invoking utfa**
 
 For convenience I have made the first line of utfa.py:
@@ -396,7 +432,7 @@ could cause problems.  It may be necessary to add one or both to the python inst
 
 **Copyright**
 
-Copyright (c) 2017 John Taylor
+Copyright (c) 2020 John Taylor
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
