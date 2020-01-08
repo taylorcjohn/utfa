@@ -13,7 +13,7 @@ John
 
 Years ago I wrote a simple utility to analyse a file into its byte components.  I find it very useful and always bring it to each new system I work on, together with some elementary test files; for example a file `256` containing 256 bytes, one of each bit pattern.  Where necessary I have rewritten the utility in C, Java, Perl and awk.
 
-As a first examination of a file, it easy to tell whether a text file is *probably* DOS- or Unix-formatted by looking at the counts of new line (0x0a) and carriage return (0x0d) characters.  Often, problems are resolved by checking whether a file contains tabs, nulls, delete and other unprintables.  In text files, characters above 0x7f may represent accented characters or other special values.
+As a first examination of a file, it's easy to tell whether a text file is *probably* DOS- or Unix-formatted by looking at the counts of new line (0x0a) and carriage return (0x0d) characters.  Often, problems are resolved by checking whether a file contains tabs, nulls, delete and other unprintables.  In text files, characters above 0x7f may represent accented characters or other special values.
 
 However, nowadays many files are encoded in UTF-8 (and most web pages too).  Simply adding counts of all bit patterns is not sufficient to understand the large “alphabet” of Unicode characters which are represented in 1, 2, 3 or 4 bytes.
 
