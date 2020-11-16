@@ -10,6 +10,7 @@
 # 2017-04-20 18:00 -c and -C web arguments
 # 2019-12-12 13:00 pre-test 'content-encoding' in response.headers
 # 2019-12-12 14:40 update block names to Unicode 12.1
+# 2020-11-16 18:00 update block names to Unicode 13.0
 # ...........................................................................
 
 from   __future__ import print_function
@@ -756,6 +757,7 @@ def main():
 
     parser = argparse.ArgumentParser(description='file analysis')
     parser.add_argument("-u", "--url",     action="store",                      help="url e.g. -u http://bbc.co.uk")
+    parser.add_argument("-U", "--unicode", action="store",                      help="url e.g. -u http://bbc.co.uk")
     parser.add_argument("-c", "--code",    action="store_true",  default=False, help="show web encoding")
     parser.add_argument("-C", "--xcode",   action="store_true",  default=False, help="show extra web headers")
     parser.add_argument("-b", "--bytes",   action="store_true",  default=False, help="analyse 256 possible bit patterns")
