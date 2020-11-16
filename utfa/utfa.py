@@ -14,6 +14,7 @@
 
 from   __future__ import print_function
 
+import os
 import sys
 import re
 import argparse
@@ -39,7 +40,7 @@ def tryimport( m ):
         globals()[m] = module_obj
     except ImportError:
         sys.exit ("""\nYou need module '%s'\n
-install it from http://pypi.python.org/pypi/%s\n 
+install it from http://pypi.python.org/pypi/%s\n
 or run 'pip install %s' (use pip3 for python 3.*)\n""" % (m,m,m))
 # ...........................................................................
 
@@ -455,7 +456,8 @@ def block_name( cp ):
     return code_name
 
 # ...........................................................................
-# populate block name Unicode 12.1.0 : http://unicode.org/versions/Unicode12.1.0/
+# 2019-05-07 populate block name Unicode 12.1.0 : http://unicode.org/versions/Unicode12.1.0/
+# 2020-03-10 populate block name Unicode 13.0.0 : http://unicode.org/versions/Unicode13.0.0/
 # ...........................................................................
 def populate_block_name():
 
@@ -711,12 +713,14 @@ def populate_block_name():
                 (0x1F900,0x1F9FF,"Supplemental Symbols and Pictographs"),
                 (0x1FA00,0x1FA6F,"Chess Symbols"),
                 (0x1FA70,0x1FAFF,"Symbols and Pictographs Extended-A"),
+                (0x1FB00,0x1FBFF,"Symbols for Legacy Computing"),
                 (0x20000,0x2A6DF,"CJK Unified Ideographs Extension B"),
                 (0x2A700,0x2B73F,"CJK Unified Ideographs Extension C"),
                 (0x2B740,0x2B81F,"CJK Unified Ideographs Extension D"),
                 (0x2B820,0x2CEAF,"CJK Unified Ideographs Extension E"),
                 (0x2CEB0,0x2EBEF,"CJK Unified Ideographs Extension F"),
                 (0x2F800,0x2FA1F,"CJK Compatibility Ideographs Supplement"),
+                (0x30000,0x3134F,"CJK Unified Ideographs Extension G"),
                 (0xE0000,0xE007F,"Tags"),
                 (0xE0100,0xE01EF,"Variation Selectors Supplement"),
                 (0xF0000,0xFFFFF,"Supplementary Private Use Area-A"),
@@ -792,8 +796,7 @@ def main():
 
     else:
         if args.file == None:
-            print ("no filename given")
-
+            print ("no filename given, pwd = ", os.getcwd())
             sys.exit ( 1 )
 
         source = args.file
