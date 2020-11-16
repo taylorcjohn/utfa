@@ -663,6 +663,7 @@ def populate_block_name():
                 (0x10B80,0x10BAF,"Psalter Pahlavi"),
                 (0x10C00,0x10C4F,"Old Turkic"),
                 (0x10E60,0x10E7F,"Rumi Numeral Symbols"),
+                (0x10E80,0x10EBF,"Yezidi"),
                 (0x11000,0x1107F,"Brahmi"),
                 (0x11080,0x110CF,"Kaithi"),
                 (0x110D0,0x110FF,"Sora Sompeng"),
