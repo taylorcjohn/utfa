@@ -757,7 +757,7 @@ def main():
 
     parser = argparse.ArgumentParser(description='file analysis')
     parser.add_argument("-u", "--url",     action="store",                      help="url e.g. -u http://bbc.co.uk")
-    parser.add_argument("-U", "--unicode", action="store",                      help="show Unicode version")
+    parser.add_argument("-U", "--unicode", action="store_true",  default=False, help="show Unicode version")
     parser.add_argument("-c", "--code",    action="store_true",  default=False, help="show web encoding")
     parser.add_argument("-C", "--xcode",   action="store_true",  default=False, help="show extra web headers")
     parser.add_argument("-b", "--bytes",   action="store_true",  default=False, help="analyse 256 possible bit patterns")
