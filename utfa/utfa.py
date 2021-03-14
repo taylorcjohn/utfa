@@ -28,8 +28,8 @@ import time
 # the intention is to be python 2.7/3.* compatible
 # tryimport gives a more useful error message if module missing
 # ...........................................................................
-import requests
-import six
+# import requests
+# import six
 
 # ...........................................................................
 # try_import
