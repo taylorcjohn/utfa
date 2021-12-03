@@ -11,6 +11,7 @@
 # 2019-12-12 13:00 pre-test 'content-encoding' in response.headers
 # 2019-12-12 14:40 update block names to Unicode 12.1
 # 2020-11-16 18:00 update block names to Unicode 13.0
+# 2021-12-03 18:00 update block names to Unicode 14.0
 # ...........................................................................
 
 from   __future__ import print_function
@@ -486,6 +487,7 @@ def populate_block_name():
                 (0x07C0,0x07FF,"NKo"),
                 (0x0800,0x083F,"Samaritan"),
                 (0x0840,0x085F,"Mandaic"),
+                (0x0870,0x089F,"Arabic Extended-B"),
                 (0x08A0,0x08FF,"Arabic Extended-A"),
                 (0x0900,0x097F,"Devanagari"),
                 (0x0980,0x09FF,"Bengali"),
@@ -645,7 +647,9 @@ def populate_block_name():
                 (0x10480,0x104AF,"Osmanya"),
                 (0x10500,0x1052F,"Elbasan"),
                 (0x10530,0x1056F,"Caucasian Albanian"),
+                (0x10570,0x105BF,"Vithkuqi"),
                 (0x10600,0x1077F,"Linear A"),
+                (0x10780,0x107BF'"Latin Extended-F"),
                 (0x10800,0x1083F,"Cypriot Syllabary"),
                 (0x10840,0x1085F,"Imperial Aramaic"),
                 (0x10860,0x1087F,"Palmyrene"),
@@ -665,6 +669,9 @@ def populate_block_name():
                 (0x10C00,0x10C4F,"Old Turkic"),
                 (0x10E60,0x10E7F,"Rumi Numeral Symbols"),
                 (0x10E80,0x10EBF,"Yezidi"),
+                (0x10F00,0x10F2F,"Old Sogdian"),
+                (0x10F30,0x10F6F,"Sogdian"),
+                (0x10F70,0x10FAF."Old Uyghur"),
                 (0x10FB0,0x10FDF,"Chorasmian"),
                 (0x11000,0x1107F,"Brahmi"),
                 (0x11080,0x110CF,"Kaithi"),
