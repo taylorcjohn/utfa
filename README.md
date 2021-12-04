@@ -412,7 +412,7 @@ characters and the new block names are provided in a file "Blocks-xxxxx.txt".  T
 
 The latest version is "Blocks-14.0.0.txt" for Unicode 14.
 
-A shell script "utblocks.sh" can be used to automatically create a new piece of Pythen code using as input a lightly edited version of the "Blocks.." file as ("Blocks-in") to create a new code fragment "Blocks-out".  This should be edited into utfa.py in function populate_block_name().
+A shell script "utblocks.sh" can be used to automatically create a new piece of Python code using as input a lightly edited version of the "Blocks-NN...." file as ("Blocks-in") to create a new code fragment "Blocks-out".  This should be edited into utfa.py in function populate_block_name().
 
 ```
 blocks = [
