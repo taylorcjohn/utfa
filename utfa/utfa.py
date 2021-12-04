@@ -786,7 +786,7 @@ blocks = [
 			(0xE0000,0xE007F,"Tags"),
 			(0xE0100,0xE01EF,"Variation Selectors Supplement"),
 			(0xF0000,0xFFFFF,"Supplementary Private Use Area-A"),
-			(0x100000,0x10FFFF,"Supplementary Private Use Area-B")
+			(0x100000,0x10FFFF,"Supplementary Private Use Area-B"),
 		]
 
 # ...........................................................................

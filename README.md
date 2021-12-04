@@ -384,25 +384,43 @@ unicode analysis for https://www.compart.com/en/unicode/block/U+1FA70	(running P
 
         total	-- unicode block --                	-- characters --
 
-      0     0	Basic Latin                        	                
-      1     0	Basic Latin                        	                
+      0     0	Basic Latin
+      1     0	Basic Latin
       2  3311	Basic Latin                        	 !"# %&'()*+,-./
-      3  2958	Basic Latin                        	0123456789:;<=> 
+      3  2958	Basic Latin                        	0123456789:;<=>
       4   319	Basic Latin                        	@ABCDEFGHI KLMNO
       5   189	Basic Latin                        	P RSTU WXY [\] _
       6 10531	Basic Latin                        	 abcdefghijklmno
-      7  4701	Basic Latin                        	pqrstuvwxyz{|}  
-   0xa0     2	Latin-1 Supplement                 	         ©      
-   0xd0     1	Latin-1 Supplement                 	       ×        
-   0xe0     1	Latin-1 Supplement                 	       ç        
- 0x2010     6	General Punctuation                	   –        “”  
-0x1fa70     7	Symbols and Pictographs Extended-A 	🩰🩱🩲🩳    🩸🩹🩺     
-0x1fa80     3	Symbols and Pictographs Extended-A 	🪀🪁🪂             
-0x1fa90     6	Symbols and Pictographs Extended-A 	🪐🪑🪒🪓🪔🪕          
+      7  4701	Basic Latin                        	pqrstuvwxyz{|}
+   0xa0     2	Latin-1 Supplement                 	         ©
+   0xd0     1	Latin-1 Supplement                 	       ×
+   0xe0     1	Latin-1 Supplement                 	       ç
+ 0x2010     6	General Punctuation                	   –        “”
+0x1fa70     7	Symbols and Pictographs Extended-A 	🩰🩱🩲🩳    🩸🩹🩺
+0x1fa80     3	Symbols and Pictographs Extended-A 	🪀🪁🪂
+0x1fa90     6	Symbols and Pictographs Extended-A 	🪐🪑🪒🪓🪔🪕
 
 total bytes      : 22099
 total characters : 22035
 ```
+
+
+**Unicode update**
+
+From time to time the Unicode consortium extends the list of supported
+characters and the new block names are provided in a file "Blocks-xxxxx.txt".  The block names need to be incorporated into utfa.py.
+
+The latest version is "Blocks-14.0.0.txt" for Unicode 14.
+
+A shell script can be used to automatically create a new piece of Pythen code using as input a lightly edited version of the "Blocks.." file as ("Blocks-in") to create a new code fragment "Blocks-out".  This should be edited into utfa.py in function populate_block_name().
+
+```
+blocks = [
+			(0x0000,0x007F,"Basic Latin"),
+			(0x0080,0x00FF,"Latin-1 Supplement"),
+			(0x0100,0x017F,"Latin Extended-A"),
+```
+etc.
 
 
 **Invoking utfa**
